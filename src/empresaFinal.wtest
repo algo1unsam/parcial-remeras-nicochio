@@ -55,7 +55,19 @@ describe "test final" {
 	}
 	
 	test "Empresa: Avellaneda es la sucursal que mas facturo" {
-		assert.equals(avellanedaFinal, empresaFinal.facturacionDeLaSucursal())
+		assert.equals(avellanedaFinal, empresaFinal.facturacionDeLaSucursal(avellanedaFinal))
+	}
+	
+	test "Empresa: hay 5 pedidos de color gris" {
+		assert.equals(5, empresaFinal.cantidadDePedidosDelColor(colorGris))
+	}
+	
+	test "Empresa: el pedido que mas facturo es el de 4 Remeras Frozen sin convenio" {
+		assert.equals(pedido4RemerasSinConvenioFinal, empresaFinal.pedidoMasCaro())
+	}
+	
+	test "Empresa: nadie vendio todos los talles" {
+		assert.equals([], empresaFinal.sucursalesQueVendieronTodosLosTalles())
 	}
 	
 }

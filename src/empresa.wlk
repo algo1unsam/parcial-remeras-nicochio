@@ -15,12 +15,12 @@ class Empresa {
 	}
 
 	method facturacionDeLaEmpresa() {
-		sucursales.sum{ sucursal => sucursal.facturacionDeLaEmpresa()}
+	return	sucursales.sum{ sucursal => sucursal.facturacionDeLaSucursal()}
 	}
 
 	method facturacionDeLaSucursal(sucursal) {
 		if (sucursales.contains(sucursal)) {
-			return sucursal.facturacionDeLaEmpresa()
+			return sucursal.facturacionDeLaSucursal()
 		} else {
 			throw exceptionNoExisteSucursal
 		}
@@ -40,7 +40,7 @@ class Empresa {
 	}
 
 	method sucursalesQueVendieronTodosLosTalles() {
-		return sucursales.filter{ sucursal => sucursal.vendioTodosLosTalles() }
+		return sucursales.filter{ sucursal => sucursal.todosLosTallesVendidos() }
 	}
 
 }
