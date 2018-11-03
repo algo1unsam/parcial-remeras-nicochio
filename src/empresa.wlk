@@ -8,30 +8,30 @@ class Empresa {
 
 	method agregarPedido(pedido, sucursal) {
 		if (sucursales.contains(sucursal)) {
-			sucursal.pedidos().add(pedido)
+			sucursal.agregarPedido(pedido)
 		} else {
 			throw exceptionNoExisteSucursal
 		}
 	}
 
 	method facturacionDeLaEmpresa() {
-		sucursales.sum{ sucursal => sucursal.valor()}
+		sucursales.sum{ sucursal => sucursal.facturacionDeLaEmpresa()}
 	}
 
 	method facturacionDeLaSucursal(sucursal) {
 		if (sucursales.contains(sucursal)) {
-			return sucursal.facturacionDeLaSucursal()
+			return sucursal.facturacionDeLaEmpresa()
 		} else {
 			throw exceptionNoExisteSucursal
 		}
 	}
 
 	method sucursalQueMasFacturo() {
-		sucursales.max{ sucursal => sucursal.facturacion()}
+		sucursales.max{ sucursal => sucursal.facturacionDeLaEmpresa()}
 	}
 
 	method cantidadDePedidosDelColor(color) {
-		return sucursales.sum{ sucursal => sucursal.pedidos().filter{ pedido => pedido.remera().color() == color}.size() }
+		return sucursales.sum{ sucursal => sucursal.pedidos().filter{ pedido => pedido.remera().colorBase() == color}.size() }
 	}
 
 	method pedidoMasCaro() {

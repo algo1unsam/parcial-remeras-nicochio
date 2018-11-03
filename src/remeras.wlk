@@ -6,7 +6,7 @@ object exceptionNoExisteTalle inherits Exception {
 
 class RemeraLisa {
 
-	const talle = 0
+	var property talle = 0
 	var property colorBase = null
 
 	method valorBaseTalle() {
@@ -28,7 +28,7 @@ class RemeraLisa {
 	}
 
 	method descuento() {
-		return (0.1 * self.costo())
+		return 10 / 100 * self.costo()
 	}
 
 }
