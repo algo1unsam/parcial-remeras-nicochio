@@ -19,7 +19,9 @@ describe "test final" {
 	var pedido4RemerasSinConvenioFinal
 	
 	fixture {
-		
+		colorGris  = new ColorBasico()
+		disneyConConvenio = new Marca()
+		disneySinConvenio = new Marca()
 		floresFinal = new Sucursal(cantMinimaParaDescuento = 10)
 		avellanedaFinal = new Sucursal(cantMinimaParaDescuento = 3)
 		remeraLisaGris42Final = new RemeraLisa(talle = 42, colorBase = colorGris)
