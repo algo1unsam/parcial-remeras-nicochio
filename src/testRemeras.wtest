@@ -1,0 +1,63 @@
+import remeras.*
+import color.*
+import empresa.*
+import marca.*
+
+describe "Test de las remeras " {
+
+	var colorGris
+	var colorBlanco
+	var colorNoBasico
+	var disneyworld
+	var remeraLisaGris40
+	var remeraLisaGris42
+	var remeraLisaVerde40
+	var remeraLisaVerde42
+	var remeraBlancaBordadaUnColor44
+	var remeraBlancaBordada4Colores44
+	var remeraSublimadaDisney42
+
+	fixture {
+		colorGris = new ColorBasico()
+		colorBlanco = new ColorBasico()
+		colorNoBasico = new Color()
+		disneyworld = new Marca(derechosDeAutor = 100)
+		remeraLisaVerde40 = new RemeraLisa(talle = 40, colorBase = colorNoBasico)
+		remeraLisaVerde42 = new RemeraLisa(talle = 42, colorBase = colorNoBasico)
+		remeraLisaGris40 = new RemeraLisa(talle = 40, colorBase = colorGris)
+		remeraLisaGris42 = new RemeraLisa(talle = 42, colorBase = colorGris)
+		remeraBlancaBordadaUnColor44 = new RemeraBordada(talle = 44, colorBase = colorBlanco, coloresBordados = [ colorNoBasico ])
+		remeraBlancaBordada4Colores44 = new RemeraBordada(talle = 44, colorBase = colorBlanco, coloresBordados = [ colorGris, colorGris, colorGris, colorGris ])
+		remeraSublimadaDisney42 = new RemeraSublimada(talle = 42, colorBase = colorGris, alto = 10, ancho = 15, marcaDeLaEstampa = disneyworld)
+	}
+
+	test "Remera lisa que tiene talle 40 en gris vale 80" {
+		assert.equals(80, remeraLisaGris40.costo())
+	}
+
+	test "RemeraLisa que tiene talle 42 en gris vale 100" {
+		assert.equals(100, remeraLisaGris42.costo())
+	}
+
+	test "RemeraLisa que tiene  talle 40 en verde vale 88" {
+		assert.equals(88, remeraLisaVerde40.costo())
+	}
+
+	test "RemeraLisa que tiene talle 42 en verde vale 110" {
+		assert.equals(110, remeraLisaVerde42.costo())
+	}
+
+	test "RemeraBordada que tiene talle 44 y un solo color bordado vale 120" {
+		assert.equals(120, remeraBlancaBordadaUnColor44.costo())
+	}
+
+	test "RemeraBordada que tiene talle 44 y cuatro colores bordado vale 140" {
+		assert.equals(140, remeraBlancaBordada4Colores44.costo())
+	}
+
+	test "RemeraSublimada que tiene talle 42 Disney gris vale 275" {
+		assert.equals(275, remeraSublimadaDisney42.costo())
+	}
+
+}
+

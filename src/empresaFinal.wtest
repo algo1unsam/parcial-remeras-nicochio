@@ -1,0 +1,60 @@
+import empresa.*
+import remeras.*
+import color.*
+import marca.*
+
+describe "test final" {
+	
+	var disneyConConvenio
+	var disneySinConvenio
+	var colorGris
+	var empresaFinal
+	var floresFinal
+	var avellanedaFinal
+	var remeraLisaGris42Final
+	var remeraFrozen42Final
+	var remeraSinConvenioFinal
+	var pedido5RemerasLisas42Final
+	var pedido4RemerasFrozen42Final
+	var pedido4RemerasSinConvenioFinal
+	
+	fixture {
+		
+		floresFinal = new Sucursal(cantMinimaParaDescuento = 10)
+		avellanedaFinal = new Sucursal(cantMinimaParaDescuento = 3)
+		remeraLisaGris42Final = new RemeraLisa(talle = 42, colorBase = colorGris)
+		remeraFrozen42Final = new RemeraSublimada(talle = 42, colorBase = colorGris, alto = 10, ancho = 15, marcaDeLaEstampa = disneyConConvenio)
+		remeraSinConvenioFinal = new RemeraSublimada(talle = 42, colorBase = colorGris, alto = 10, ancho = 15, marcaDeLaEstampa = disneySinConvenio)
+		pedido5RemerasLisas42Final = new Pedido(remera = remeraLisaGris42Final, cantidad = 5)
+		pedido4RemerasFrozen42Final = new Pedido(remera = remeraFrozen42Final, cantidad = 4)
+		pedido4RemerasSinConvenioFinal =  new Pedido(remera = remeraSinConvenioFinal, cantidad = 4)
+		empresaFinal = new Empresa(sucursales = [floresFinal, avellanedaFinal])
+		empresaFinal.agregarPedido(pedido5RemerasLisas42Final, floresFinal)
+		empresaFinal.agregarPedido(pedido5RemerasLisas42Final, avellanedaFinal)
+		empresaFinal.agregarPedido(pedido4RemerasFrozen42Final, floresFinal)
+		empresaFinal.agregarPedido(pedido4RemerasFrozen42Final, avellanedaFinal)
+		empresaFinal.agregarPedido(pedido4RemerasSinConvenioFinal, avellanedaFinal)
+
+
+	}
+
+	
+	
+	test "Empresa: facturacion total Flores es de 1330" {
+		assert.equals(1330, empresaFinal.facturacionDeLaSucursal(floresFinal))
+	}
+	
+	test "Empresa: facturacion total Avellaneda es de 2320" {
+		assert.equals(2320, empresaFinal.facturacionDeLaSucursal(avellanedaFinal))
+	}
+	
+	test "Empresa: facturacion final de todos los pedidos da 3650" {
+		assert.equals(3650, empresaFinal.facturacionDeLaEmpresa())
+	}
+	
+	test "Empresa: Avellaneda es la sucursal que mas facturo" {
+		assert.equals(avellanedaFinal, empresaFinal.facturacionDeLaSucursal())
+	}
+	
+}
+
